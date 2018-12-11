@@ -14,7 +14,7 @@ data class PartNameEntity(
     companion object {
         fun initData(): List<PartNameEntity> {
             return listOf(
-                    PartNameEntity("intro"),
+                    PartNameEntity("instr"),
                     PartNameEntity("zwr"),
                     PartNameEntity("ref"),
                     PartNameEntity("bridge"))

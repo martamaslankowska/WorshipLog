@@ -18,6 +18,9 @@ interface LogDetailSongDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(logDetailSong: LogDetailSongEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(logDetailSong: List<LogDetailSongEntity>)
+
     @Query("DELETE FROM log_detail_song")
     fun deleteAll()
 

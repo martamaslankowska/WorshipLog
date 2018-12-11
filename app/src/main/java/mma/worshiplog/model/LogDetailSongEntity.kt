@@ -21,4 +21,25 @@ data class LogDetailSongEntity(
         @ColumnInfo(name = "extra_info") var extraInfo: String?
 ) {
     constructor():this(0,0, "", "")
+
+    companion object {
+        fun initData(): List<LogDetailSongEntity> {
+            return listOf(
+                    LogDetailSongEntity(1, 1, "zwr", ""),
+                    LogDetailSongEntity(1, 2, "ref", ""),
+                    LogDetailSongEntity(1, 3, "zwr", ""),
+                    LogDetailSongEntity(1, 4, "bridge", "x4"),
+                    LogDetailSongEntity(3, 1, "instr", "długi"),
+                    LogDetailSongEntity(3, 2, "zwr", ""),
+                    LogDetailSongEntity(4, 1, "zwr", ""),
+                    LogDetailSongEntity(4, 2, "ref", ""),
+                    LogDetailSongEntity(4, 3, "zwr", ""),
+                    LogDetailSongEntity(5, 1, "ref", ""),
+                    LogDetailSongEntity(8, 1, "zwr", ""),
+                    LogDetailSongEntity(8, 2, "ref", "x2"),
+                    LogDetailSongEntity(8, 5, "zwr", ""),
+                    LogDetailSongEntity(9, 1, "ref", ""))
+
+        }
+    }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -14,16 +15,17 @@ import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import mma.worshiplog.model.AppDatabase
-import mma.worshiplog.model.LogFileDao
-import mma.worshiplog.model.PartNameDao
-import mma.worshiplog.model.PartNameEntity
 import java.util.*
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+import mma.worshiplog.model.*
+import java.security.AccessController.getContext
+
 
 class MainActivity : AppCompatActivity() {
 
     // Initializing an empty ArrayList to be filled with logs
-    var logs: ArrayList<Log> = ArrayList()
+    lateinit var logs: List<LogFileEntity>
     var database: AppDatabase? = null
 
     lateinit var emptyLogTextView: TextView
@@ -33,9 +35,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         database = AppDatabase.getInstance(this)
-        var logFileDao: LogFileDao = database!!.logFileDao()
 
-        var partNameDao: PartNameDao = database!!.partNameDao()
+        val logFileDao: LogFileDao = database!!.logFileDao()
+        val partNameDao: PartNameDao = database!!.partNameDao()
+        val logDetailDao: LogDetailDao = database!!.logDetailDao()
+
 
         emptyLogTextView = findViewById(R.id.emptyLogTextView)
         pickLogTextView = findViewById(R.id.pickOldLogTextView)
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         floatingButton.setOnClickListener {
-            val intent = Intent(this, LogActivity::class.java)
+            val intent = Intent(this, DragAndDropActivity::class.java)
             val filename = "My message"
 
             intent.putExtra("fileName", filename)
@@ -51,52 +55,67 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-        val gettingPartNames = Maybe.fromCallable { partNameDao.getAllPartNames() }
+        val gettingLogs = Maybe.fromCallable { logFileDao.getAllLogs() }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ partNames ->
+                .subscribe({ logList ->
                     /* onSuccess() :) */
-                    try {
-                        Toast.makeText(this, "Było odwołanie do bazy i SUPER", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, partNames[0].namePart, Toast.LENGTH_SHORT).show()
+                    logs = logList
+                    Toast.makeText(this, "Logs: " + logs.size.toString(), Toast.LENGTH_SHORT).show()
 
-                    } catch (e: Exception) {
-                        Toast.makeText(this, "Ups, pusta baza :(", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    // Creates a vertical Layout Manager
+                    loglistView.layoutManager = LinearLayoutManager(this)
+
+                    // Access the RecyclerView Adapter and load the data into it
+                    loglistView.adapter = LogAdapter(logs, this)
+
+
+
+                    if (logs.isEmpty()) {
+                        pickLogTextView.visibility = View.INVISIBLE
+                    } else {
+                        emptyLogTextView.visibility = View.GONE
                     }
+
                 }) { throwable ->
                     /* onError() */
-                    Toast.makeText(this, "Jakiś błąąąd... -.- -.-", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Coś poszło nie tak...", Toast.LENGTH_LONG).show()
                 }
 
 
+//        val gettingPartNames = Maybe.fromCallable { partNameDao.getAllPartNames() }
+//                .subscribeOn(Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({ partNames ->
+//                    /* onSuccess() :) */
+//                    Toast.makeText(this, "Part names: " + partNames.size.toString(), Toast.LENGTH_SHORT).show()
+//
+//                }) { throwable ->
+//                    /* onError() */
+//                    Toast.makeText(this, "Coś poszło nie tak...", Toast.LENGTH_LONG).show()
+//                }
+//
+//
+//        val gettingSongDetails = Maybe.fromCallable { logDetailDao.getAllLogDetails() }
+//                .subscribeOn(Schedulers.computation())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({ logDetails ->
+//                    /* onSuccess() :) */
+//                    Toast.makeText(this, "Details: " + logDetails.size.toString(), Toast.LENGTH_SHORT).show()
+//
+//                }) { throwable ->
+//                    /* onError() */
+//                    Toast.makeText(this, "Coś poszło nie tak...", Toast.LENGTH_LONG).show()
+//                }
 
-        // Loads animals into the ArrayList
-        prepareData()
-
-        // Creates a vertical Layout Manager
-        loglist.layoutManager = LinearLayoutManager(this)
-
-        // Access the RecyclerView Adapter and load the data into it
-        loglist.adapter = LogAdapter(logs, this)
-
-
-
-
-        if (logs.isEmpty()) {
-            pickLogTextView.visibility = View.INVISIBLE
-        } else {
-            emptyLogTextView.visibility = View.GONE
-        }
     }
 
     // Adds animals to the empty animals ArrayList
-    fun prepareData() {
-        logs.add(Log(Date(), "aaaaaaa, cokolwiek"))
-        logs.add(Log(Date(), "próba"))
-        logs.add(Log(Date(2018, 12, 8), "próba nabożeństwa"))
-        logs.add(Log(Date(2018, 12, 5), "próba wieczoru uwielbienia"))
-    }
+//    fun prepareData() {
+//        logs.add(LogFileEntity(1, "8-12-2018", "próba nabożeństwa"))
+//        logs.add(LogFileEntity(1, "7-11-2018", "próba w kościele"))
+//        logs.add(LogFileEntity(1, "3-12-2018", "próba"))
+//        logs.add(LogFileEntity(1, "18-10-2018", "próba do nabożeństwa"))
+//    }
 
 }

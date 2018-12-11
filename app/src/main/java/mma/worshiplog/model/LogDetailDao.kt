@@ -20,6 +20,9 @@ interface LogDetailDao {
     @Insert(onConflict = REPLACE)
     fun insert(logDetail: LogDetailEntity)
 
+    @Insert(onConflict = REPLACE)
+    fun insert(logDetail: List<LogDetailEntity>)
+
     @Query("DELETE FROM log_detail")
     fun deleteAll()
 

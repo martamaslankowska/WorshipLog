@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/splittingGuideline">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/loglist"
+            android:id="@+id/loglistView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+    <TextView
+        android:id="@+id/songNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:text="6."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextDarkGray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/right_margin"
+        android:layout_marginStart="8dp"
+        android:inputType="textPersonName"
+        android:hint="@string/song_hint"
+        android:textStyle="italic"
+        android:textColor="@color/colorTextGray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/songNumberTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/songNumberTextView"
+        app:layout_constraintTop_toTopOf="@+id/songNumberTextView"/>
+
+    <!--<GridView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="@dimen/right_margin"-->
+        <!--android:layout_marginStart="@dimen/left_margin"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@color/colorLightBackground"-->
+        <!--android:numColumns="4"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText" />-->
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorTextGray"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+
+
+</android.support.constraint.ConstraintLayout>

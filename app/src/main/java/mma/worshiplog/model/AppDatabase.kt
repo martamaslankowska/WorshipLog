@@ -26,16 +26,19 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase::class.java, "worship_log.db")
+                            //.allowMainThreadQueries()
                             .addCallback(object : RoomDatabase.Callback() {
                                 override fun onCreate(@NonNull db: SupportSQLiteDatabase) {
                                     super.onCreate(db)
                                     Executors.newSingleThreadScheduledExecutor()
                                             .execute(Runnable {
                                                 getInstance(context)?.partNameDao()?.insert(PartNameEntity.initData())
+                                                getInstance(context)?.logFileDao()?.insert(LogFileEntity.initData())
+                                                getInstance(context)?.logDetailDao()?.insert(LogDetailEntity.initData())
+                                                getInstance(context)?.logDetailSongDao()?.insert(LogDetailSongEntity.initData())
                                             })
                                 }
                             }).build()
-//                    INSTANCE.partNameDao().insert(PartNameEntity.initData())
                 }
             }
             return INSTANCE
@@ -46,3 +49,5 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
+

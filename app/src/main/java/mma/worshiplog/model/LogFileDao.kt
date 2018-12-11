@@ -17,6 +17,9 @@ interface LogFileDao {
     @Insert(onConflict = REPLACE)
     fun insert(logFile: LogFileEntity)
 
+    @Insert(onConflict = REPLACE)
+    fun insert(logFile: List<LogFileEntity>)
+
     @Query("DELETE FROM log_file")
     fun deleteAll()
 

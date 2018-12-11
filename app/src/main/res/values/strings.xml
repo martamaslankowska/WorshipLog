@@ -5,5 +5,10 @@
     <string name="pick_old_log">lub wybierz poprzednio zapisaną z listy:</string>
     <string name="empty_log">Nie znaleziono zapisanych prób</string>
 
+    <string name="file_name">Nazwa:</string>
+    <string name="file_default_name">próba do nabożeństwa</string>
+    <string name="song_hint">nazwa piosenki</string>
+
+
 
 </resources>
