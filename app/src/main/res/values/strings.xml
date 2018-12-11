@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Worship Log</string>
+
+    <string name="add_new_log">Dodaj nową próbę</string>
+    <string name="pick_old_log">lub wybierz poprzednio zapisaną z listy:</string>
+    <string name="empty_log">Nie znaleziono zapisanych prób</string>
+
+
+</resources>
