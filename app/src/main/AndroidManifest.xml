@@ -19,6 +19,9 @@
         <activity
             android:name=".LogActivity"
             android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".DetailActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".DragAndDropActivity" />
     </application>
 

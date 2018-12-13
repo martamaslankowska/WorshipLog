@@ -10,7 +10,7 @@ import io.reactivex.annotations.NonNull
 import java.util.concurrent.Executors
 
 
-@Database(entities = arrayOf(LogFileEntity::class, LogDetailEntity::class, LogDetailSongEntity::class, PartNameEntity::class), version = 1)
+@Database(entities = arrayOf(LogFileEntity::class, LogDetailEntity::class, LogDetailSongEntity::class, PartNameEntity::class), version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun logFileDao(): LogFileDao
     abstract fun logDetailDao(): LogDetailDao
@@ -19,9 +19,9 @@ abstract class AppDatabase : RoomDatabase() {
 
 
     companion object {
-        private var INSTANCE: AppDatabase? = null
+        var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase? {
+        @JvmStatic fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),

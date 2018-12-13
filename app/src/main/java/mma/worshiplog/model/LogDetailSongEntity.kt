@@ -6,7 +6,7 @@ import android.arch.persistence.room.ForeignKey
 import io.reactivex.annotations.NonNull
 
 @Entity(tableName = "log_detail_song",
-        primaryKeys = arrayOf("id_song", "name_part"),
+        primaryKeys = arrayOf("id_song", "order_part"),
         foreignKeys = arrayOf(
                 ForeignKey(entity = PartNameEntity::class,
                         parentColumns = arrayOf("name_part"), //parent id
@@ -15,8 +15,8 @@ import io.reactivex.annotations.NonNull
 data class LogDetailSongEntity(
         @NonNull
         @ColumnInfo(name = "id_song") var idSong: Int,
-        @ColumnInfo(name = "order_part") var orderPart: Int?,
         @NonNull
+        @ColumnInfo(name = "order_part") var orderPart: Int,
         @ColumnInfo(name = "name_part") var namePart: String,
         @ColumnInfo(name = "extra_info") var extraInfo: String?
 ) {
@@ -25,15 +25,15 @@ data class LogDetailSongEntity(
     companion object {
         fun initData(): List<LogDetailSongEntity> {
             return listOf(
-                    LogDetailSongEntity(1, 1, "zwr", ""),
+                    LogDetailSongEntity(1, 1, "zwr", "1"),
                     LogDetailSongEntity(1, 2, "ref", ""),
-                    LogDetailSongEntity(1, 3, "zwr", ""),
+                    LogDetailSongEntity(1, 3, "zwr", "2"),
                     LogDetailSongEntity(1, 4, "bridge", "x4"),
                     LogDetailSongEntity(3, 1, "instr", "długi"),
                     LogDetailSongEntity(3, 2, "zwr", ""),
-                    LogDetailSongEntity(4, 1, "zwr", ""),
+                    LogDetailSongEntity(4, 1, "zwr", "1"),
                     LogDetailSongEntity(4, 2, "ref", ""),
-                    LogDetailSongEntity(4, 3, "zwr", ""),
+                    LogDetailSongEntity(4, 3, "zwr", "2"),
                     LogDetailSongEntity(5, 1, "ref", ""),
                     LogDetailSongEntity(8, 1, "zwr", ""),
                     LogDetailSongEntity(8, 2, "ref", "x2"),

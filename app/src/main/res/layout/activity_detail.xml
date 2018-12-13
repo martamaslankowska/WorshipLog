@@ -18,7 +18,9 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/fileNameTextView"
@@ -64,15 +66,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="50dp"
-                android:background="@color/colorTextGray"
+                android:background="@color/colorLightGray"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/songListView"
+                android:id="@+id/songListRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:focusableInTouchMode="true"
+                android:paddingHorizontal="@dimen/grid_padding"
                 app:layout_constraintTop_toTopOf="@id/view" />
 
 
@@ -91,7 +94,7 @@
         android:id="@+id/viewGuideline"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/colorTextGray"
+        android:background="@color/colorLightGray"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <Button
@@ -104,6 +107,8 @@
         android:backgroundTint="@color/colorInstr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/zwrButton"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -116,6 +121,8 @@
         android:layout_marginTop="8dp"
         android:text="zwr"
         android:backgroundTint="@color/colorZwr"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/refButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -131,6 +138,8 @@
         android:layout_marginTop="8dp"
         android:text="ref"
         android:backgroundTint="@color/colorRef"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bridgeButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -146,6 +155,8 @@
         android:layout_marginTop="8dp"
         android:text="bridge"
         android:backgroundTint="@color/colorBridge"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

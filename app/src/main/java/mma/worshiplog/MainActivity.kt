@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         floatingButton.setOnClickListener {
             val intent = Intent(this, DragAndDropActivity::class.java)
             val filename = "My message"
-
             intent.putExtra("fileName", filename)
             startActivity(intent)
         }
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribe({ logList ->
                     /* onSuccess() :) */
                     logs = logList
-                    Toast.makeText(this, "Logs: " + logs.size.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Logs: " + logs.size.toString(), Toast.LENGTH_SHORT).show()
 
                     // Creates a vertical Layout Manager
                     loglistView.layoutManager = LinearLayoutManager(this)

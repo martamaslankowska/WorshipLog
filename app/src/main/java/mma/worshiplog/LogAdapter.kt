@@ -10,10 +10,13 @@ import java.text.SimpleDateFormat
 import android.R.attr.onClick
 import android.content.Intent
 import android.support.v4.content.ContextCompat.startActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
+import mma.worshiplog.R.id.view
 import mma.worshiplog.model.AppDatabase
 import mma.worshiplog.model.LogFileEntity
 
@@ -42,7 +45,9 @@ class LogAdapter(val items : List<LogFileEntity>, val context: Context)
 
         holder.itemView.setOnClickListener(View.OnClickListener {
 //            Toast.makeText(context, "Blaaaaaaaah na pozycji " + position.toString(), Toast.LENGTH_SHORT).show()
-            val intent = Intent(context, LogActivity::class.java)
+
+
+            val intent = Intent(context, DetailActivity::class.java)
             val logID = log.idLog
             intent.putExtra("logID", logID)
             context.startActivity(intent)

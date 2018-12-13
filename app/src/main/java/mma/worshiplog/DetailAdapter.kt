@@ -26,8 +26,8 @@ class DetailAdapter(val items : List<Int>, val context: Context)
 
     // Binds each animal in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolderDetail, position: Int) {
-        var songId: Int = items.get(position)
-        holder?.songIdTextView.text = songId.toString() + "."
+        val songId: Int = items.get(position)
+        holder.songIdTextView.text = (songId.toString() + ".")
     }
 }
 

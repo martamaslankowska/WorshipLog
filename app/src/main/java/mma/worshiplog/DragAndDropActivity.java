@@ -87,7 +87,7 @@ public class DragAndDropActivity extends AppCompatActivity implements View.OnDra
         );
 
         //Set view visibility to INVISIBLE as we are going to drag the view
-        view.setVisibility(View.INVISIBLE);
+//        view.setVisibility(View.INVISIBLE);
         return true;
     }
 
@@ -152,7 +152,7 @@ public class DragAndDropActivity extends AppCompatActivity implements View.OnDra
                 String dragData = item.getText().toString();
 
                 // Displays a message containing the dragged data.
-                Toast.makeText(this, "Dragged data is " + dragData, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Dragged data is " + dragData, Toast.LENGTH_SHORT).show();
 
                 // Turns off any color tints
                 view.getBackground().clearColorFilter();
@@ -177,11 +177,11 @@ public class DragAndDropActivity extends AppCompatActivity implements View.OnDra
                 view.invalidate();
 
                 // Does a getResult(), and displays what happened.
-                if (event.getResult())
-                    Toast.makeText(this, "The drop was handled.", Toast.LENGTH_SHORT).show();
-
-                else
-                    Toast.makeText(this, "The drop didn't work.", Toast.LENGTH_SHORT).show();
+//                if (event.getResult())
+//                    Toast.makeText(this, "The drop was handled.", Toast.LENGTH_SHORT).show();
+//
+//                else
+//                    Toast.makeText(this, "The drop didn't work.", Toast.LENGTH_SHORT).show();
 
 
                 // returns true; the value is ignored.
