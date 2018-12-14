@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     AppDatabase database;
     List<LogDetail> listOfSongs;
     Filter<LogDetail, Integer> filter;
+    int numberOfSongs = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class DetailActivity extends AppCompatActivity {
                             .subscribe(logDetails -> {
 
                                 listOfSongs = logDetails;
+                                numberOfSongs = logSongsIds.size();
 
                                 for (int i=0; i<logSongsIds.size(); i++) {
                                     int songID = logSongsIds.get(i);
@@ -74,11 +77,12 @@ public class DetailActivity extends AppCompatActivity {
                                     List<PartNameGrid> songsPartNames = new ArrayList<>();
                                     for (int j=0; j<song.size(); j++){
                                          LogDetail songPart = song.get(j);
-                                        if (songPart.getPartName() != null && !songPart.getPartName().isEmpty() && !songPart.getPartName().equals("")) {
+                                        if (songPart.getPartName() != null && !songPart.getPartName().isEmpty()) {
                                             songsPartNames.add(new PartNameGrid(songPart.getPartName(), songPart.getExtraInfo()));
                                         }
                                     }
-                                    sectionAdapter.addSection(new SongSection(String.valueOf(i+1) + "/" + song.get(0).getSongName(), songsPartNames));
+                                    String tag = String.valueOf(i+1);
+                                    sectionAdapter.addSection(tag, new SongSection(this, tag + "/" + song.get(0).getSongName(), songsPartNames));
                                 }
 
                                 // Set up your RecyclerView with the SectionedRecyclerViewAdapter
@@ -99,6 +103,19 @@ public class DetailActivity extends AppCompatActivity {
                                 });
                                 recyclerView.setLayoutManager(glm);
                                 recyclerView.setAdapter(sectionAdapter);
+
+
+                                findViewById(R.id.addSongImageView).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        numberOfSongs++;
+                                        String tag = String.valueOf(numberOfSongs);
+                                        sectionAdapter.addSection(tag, new SongSection(view.getContext(), String.valueOf(numberOfSongs) + "/" + "", new ArrayList<PartNameGrid>()));
+                                        int sectionPosition = sectionAdapter.getSectionPosition(tag);
+                                        sectionAdapter.notifyItemInserted(sectionPosition);
+                                        recyclerView.smoothScrollToPosition(sectionPosition);
+                                    }
+                                });
 
                             }
                             ,throwable -> {

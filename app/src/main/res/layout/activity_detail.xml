@@ -52,14 +52,15 @@
                 app:layout_constraintTop_toTopOf="@+id/fileNameTextView" />
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="@dimen/right_margin"
+                android:id="@+id/addSongImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/fileNameEditText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/edit" />
+                app:srcCompat="@drawable/add_song_button" />
 
             <View
                 android:id="@+id/view"
@@ -88,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_end="50dp" />
 
     <View
         android:id="@+id/viewGuideline"

@@ -25,18 +25,18 @@ data class LogDetailSongEntity(
     companion object {
         fun initData(): List<LogDetailSongEntity> {
             return listOf(
-                    LogDetailSongEntity(1, 1, "zwr", "1"),
-                    LogDetailSongEntity(1, 2, "ref", ""),
-                    LogDetailSongEntity(1, 3, "zwr", "2"),
-                    LogDetailSongEntity(1, 4, "bridge", "x4"),
-                    LogDetailSongEntity(3, 1, "instr", "długi"),
+                    LogDetailSongEntity(1, 1, "zwr", ""),
+                    LogDetailSongEntity(1, 2, "ref", "2"),
+                    LogDetailSongEntity(1, 4, "zwr", ""),
+                    LogDetailSongEntity(1, 5, "bridge", "4"),
+                    LogDetailSongEntity(3, 1, "instr", "2"),
                     LogDetailSongEntity(3, 2, "zwr", ""),
-                    LogDetailSongEntity(4, 1, "zwr", "1"),
-                    LogDetailSongEntity(4, 2, "ref", ""),
-                    LogDetailSongEntity(4, 3, "zwr", "2"),
+                    LogDetailSongEntity(4, 1, "zwr", ""),
+                    LogDetailSongEntity(4, 2, "ref", "4"),
+                    LogDetailSongEntity(4, 3, "zwr", ""),
                     LogDetailSongEntity(5, 1, "ref", ""),
                     LogDetailSongEntity(8, 1, "zwr", ""),
-                    LogDetailSongEntity(8, 2, "ref", "x2"),
+                    LogDetailSongEntity(8, 2, "ref", "2"),
                     LogDetailSongEntity(8, 5, "zwr", ""),
                     LogDetailSongEntity(9, 1, "ref", ""))
 

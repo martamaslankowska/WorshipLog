@@ -69,7 +69,9 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
-                                      <entry key="imageAsset" value="C:\Users\Marta\Documents\Nauka\Android\WorshipLog\app\src\main\res\drawable\icon.png" />
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="imageAsset" value="C:\Users\Marta\Documents\Nauka\Android\WorshipLog\app\src\main\res\drawable\icon2.png" />
+                                      <entry key="outputName" value="icon2" />
                                     </map>
                                   </option>
                                 </PersistentState>

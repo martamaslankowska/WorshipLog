@@ -1,6 +1,10 @@
 package mma.worshiplog;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.opengl.Visibility;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -33,17 +37,20 @@ public class SongSection extends StatelessSection {
 //        this.itemList = list;
 //    }
 
+    Context context;
+
     String songName;
     Integer songNumber;
     List<PartNameGrid> items;
-    public SongSection(String title, List<PartNameGrid> list) {
+    public SongSection(Context context, String title, List<PartNameGrid> list) {
         super(SectionParameters.builder()
                 .itemResourceId(R.layout.grid_item)
                 .headerResourceId(R.layout.grid_header)
                 .build());
 
-        String splittedSongName[] = title.split("/");
+        String splittedSongName[] = title.split("/", 2);
 
+        this.context = context;
         this.items = list;
         this.songNumber = Integer.parseInt(splittedSongName[0]);
         this.songName = splittedSongName[1];
@@ -65,7 +72,14 @@ public class SongSection extends StatelessSection {
         DetailItemViewHolder itemHolder = (DetailItemViewHolder) holder;
         // bind your view here
         PartNameGrid songPart = items.get(position);
-        itemHolder.partName.setText(songPart.partName);
+
+        String extraInfo = songPart.extraInfo.isEmpty() ? "" : ("\nx" + songPart.extraInfo);
+
+        itemHolder.partName.setText((songPart.partName + extraInfo));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            itemHolder.partName.setBackgroundTintList(ContextCompat.getColorStateList(context, getPartNameColor(songPart.partName)));
+        }
+
 //        if (songPart.getExtraInfo().isEmpty() || songPart.getExtraInfo().equals(""))
 //            itemHolder.extraInfo.setVisibility(View.GONE);
 //        else
@@ -101,8 +115,20 @@ public class SongSection extends StatelessSection {
 //            }
 //        });
 
-
-
-
     }
+
+    public int getPartNameColor(String partName) {
+        int resource = 0;
+        if (partName.startsWith("instr"))
+            resource = R.color.colorInstr;
+        else if (partName.startsWith("zwr"))
+            resource = R.color.colorZwr;
+        else if (partName.startsWith("ref"))
+            resource = R.color.colorRef;
+        else if (partName.startsWith("bridge"))
+            resource = R.color.colorBridge;
+        return resource;
+    }
+
+
 }

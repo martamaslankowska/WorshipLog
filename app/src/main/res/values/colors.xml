@@ -11,9 +11,9 @@
     <color name="colorLightGray">#b4b4b4</color>
 
 
-    <color name="colorInstr">#a7a7a7</color>
+    <color name="colorInstr">#b4b4b4</color>
     <color name="colorZwr">#a9c668</color>
     <color name="colorRef">#da6f6f</color>
-    <color name="colorBridge">#e2c06a</color>
+    <color name="colorBridge">#dfba5b</color>
 
 </resources>
